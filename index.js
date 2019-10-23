@@ -1,14 +1,18 @@
 const fs = require('fs')
-const Tokenizer = require('./tokenize')
-
-const source = fs.readFileSync('programs/main.mrs').toString()
-const tokenizer = new Tokenizer(source)
+const Tokenizer = require('./ast/tokenize')
+const SyntaxTree = require('./ast/synxtax-tree')
 
 try {
-tokenizer.tokenize()
+    const source = fs.readFileSync('programs/main.mrs').toString()
 
-console.log(tokenizer.tokens)
+    const tokenizer = new Tokenizer(source)
+    tokenizer.tokenize()
+
+    const syntaxTree = new SyntaxTree(tokenizer.tokens)
+    syntaxTree.parse()
+
+    fs.writeFileSync('output.json', JSON.stringify(syntaxTree.ast, null, 4))
 } catch (error) {
-    console.error(`error while compiling program`)
+    console.error('error while compiling program')
     console.error(error)
 }

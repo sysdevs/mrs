@@ -1,11 +1,15 @@
 {
-  "name": "marie_really_sux",
+  "name": "mrs",
   "version": "1.0.0",
-  "description": "",
+  "description": "mrs is a compiler for a made-up language -- MARIE really sux",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sysdevs/mrs.git"
+  },
+  "author": "Zachary Penn",
+  "license": "GPL-3.0-only"
 }

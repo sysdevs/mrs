@@ -1,0 +1,92 @@
+[
+    {
+        "type": "statement",
+        "kind": "function",
+        "name": "add",
+        "arguments": [
+            {
+                "type": "symbol",
+                "name": "a"
+            },
+            {
+                "type": "symbol",
+                "name": "b"
+            }
+        ],
+        "body": [
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "something",
+                "dataType": "i16"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "something",
+                "value": 52,
+                "valueType": "number"
+            }
+        ]
+    },
+    {
+        "type": "statement",
+        "kind": "function",
+        "name": "main",
+        "arguments": [],
+        "body": [
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "x",
+                "dataType": "i32"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "x",
+                "value": 5,
+                "valueType": "number"
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "text1",
+                "dataType": "str"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "text1",
+                "value": "hello world",
+                "valueType": "str"
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "text2",
+                "dataType": "str"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "text2",
+                "value": "fizz buzz",
+                "valueType": "str"
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "value",
+                "dataType": "i8"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "value",
+                "value": "input",
+                "valueType": "symbol"
+            }
+        ]
+    }
+]

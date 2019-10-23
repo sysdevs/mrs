@@ -1,13 +1,11 @@
+func add a b {
+    i16 something = 52
+}
+
 func main {
     i32 x = 5
     str text1 = 'hello world'
     str text2 = 'fizz buzz'
 
-    int8 value = input()
-
-    if (value > x) {
-        output(text1)
-    } else {
-        output(text2)
-    }
+    i8 value = input
 }
