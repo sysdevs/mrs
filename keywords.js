@@ -8,6 +8,6 @@ module.exports.intTypes = intTypes
 module.exports.strType = strType
 module.exports.controlFlow = controlFlow
 module.exports.funcType = funcType
-
+module.exports.operators = operators
 module.exports.dataTypes = [...intTypes, strType]
 module.exports.keywords = [...intTypes, strType, ...controlFlow, funcType]

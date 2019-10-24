@@ -1,6 +1,6 @@
 func add a b {
     i16 something = 52
-    return a * b + something
+    return a * b
 }
 
 func main {

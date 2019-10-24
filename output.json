@@ -30,67 +30,64 @@
             {
                 "type": "statement",
                 "kind": "return",
-                "expressions": []
-            }
-        ]
-    },
-    {
-        "type": "statement",
-        "kind": "function",
-        "name": "main",
-        "arguments": [],
-        "body": [
-            {
-                "type": "statement",
-                "kind": "declaration",
-                "name": "x",
-                "dataType": "i32"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "x",
-                "value": 5,
-                "valueType": "number"
+                "expressions": [
+                    {
+                        "type": "expression",
+                        "kind": "operator",
+                        "operation": "*",
+                        "left": "a",
+                        "right": "b"
+                    }
+                ]
             },
             {
                 "type": "statement",
-                "kind": "declaration",
-                "name": "text1",
-                "dataType": "str"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "text1",
-                "value": "hello world",
-                "valueType": "str"
-            },
-            {
-                "type": "statement",
-                "kind": "declaration",
-                "name": "text2",
-                "dataType": "str"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "text2",
-                "value": "fizz buzz",
-                "valueType": "str"
-            },
-            {
-                "type": "statement",
-                "kind": "declaration",
-                "name": "value",
-                "dataType": "i8"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "value",
-                "value": "input",
-                "valueType": "symbol"
+                "kind": "function",
+                "name": "main",
+                "arguments": [],
+                "body": [
+                    {
+                        "type": "statement",
+                        "kind": "declaration",
+                        "name": "x",
+                        "dataType": "i32"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "assignment",
+                        "name": "x",
+                        "value": 5,
+                        "valueType": "number"
+                    },
+                    {
+                        "type": "statement",
+                        "kind": "declaration",
+                        "name": "text1",
+                        "dataType": "str"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "assignment",
+                        "name": "text1",
+                        "value": "hello world",
+                        "valueType": "str"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "str",
+                        "value": "\n    str text2 = "
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "str",
+                        "value": "fizz buzz"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "str",
+                        "value": "\n\n    i8 value = input()\n\n    if (value > x) {\n        output(text1)\n    } else {\n        output(text2)\n    }\n}\n"
+                    }
+                ]
             }
         ]
     }

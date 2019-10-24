@@ -1,6 +1,57 @@
 const ParseError = require('../parse-error')
 
 function parseSymbol(parent, token, tree) {
+    const next = tree.peek()
+
+    if (next) {
+        if (next.type === 'operator') {
+            tree.pop()
+            const operand = tree.pop()
+
+            if (!operand) {
+                throw ParseError.endOfFile(next, 'expected operand to operator')
+            }
+
+            if (operand.type !== 'symbol' && operand.type !== 'number') {
+                throw ParseError.token(operand, 'operand expected to be symbol or numeric constant')
+            }
+            parent.push({
+                type: 'expression',
+                kind: 'operator',
+                operation: next.lexeme,
+                left: token.lexeme,
+                right: operand.lexeme
+            })
+        } else if (next.lexeme === '(') {
+            const parameters = []
+            let cur = tree.peek()
+
+            while (cur && cur.lexeme !== ')') {
+                parameters.push(cur)
+                tree.pop()
+            }
+
+            if (!cur) {
+                throw ParseError.endOfFile(next, 'expected closing parenthesis')
+            }
+            if (cur.lexeme !== '}') {
+                throw ParseError.token(cur, 'expected closing parenthesis to function call')
+            }
+
+            const expressionTree = new tree.constructor(parameters)
+
+            parent.push({
+                type: 'function-call',
+                name: token.lexeme,
+                parameters: expressionTree.parse()
+            })
+        }
+    } else {
+        parent.push({
+            type: 'symbol',
+            name: token.lexeme
+        })
+    }
     return tree.parse(parent)
 }
 
@@ -30,12 +81,11 @@ function parseString(parent, token, tree) {
     return tree.parse(parent)
 }
 
-module.exports.shouldParse = () => {
-    return true
+module.exports.shouldParse = token => {
+    return token.type !== 'misc'
 }
 
 module.exports.parse = (parent, token, tree) => {
-    console.log('parsing', token)
     switch (token.type) {
         case 'symbol':
             return parseSymbol(parent, token, tree)

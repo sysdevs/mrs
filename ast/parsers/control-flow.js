@@ -20,7 +20,7 @@ function readReturnStatement(parent, token, tree) {
 
     // wtf at this hack, importing SyntaxTree returns null due to circular dependencies
     const expressionTree = new tree.constructor(tokens)
-    expressionTree.parse()
+    expressionTree.parse(expressionTree.ast, true)
 
     parent.push({
         type: 'statement',

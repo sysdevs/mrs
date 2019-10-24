@@ -27,6 +27,11 @@ function readSymbol(tokenizer) {
         tokenizer.lexeme += tokenizer.ch
         tokenizer.getch()
     }
+
+
+    console.log(`ungetting.. ${tokenizer.ch} on '${tokenizer.lexeme}'`)
+
+    tokenizer.ungetch()
     
     if (tokenizer.lexeme.length > 0) {
         let type = 'symbol'
@@ -50,14 +55,26 @@ function readOperator(tokenizer) {
     tokenizer.startColumn = tokenizer.currentColumn
 }
 
+function readMisc(tokenizer) {
+    tokenizer.lexeme = tokenizer.ch
+    tokenizer.tokens.push(new Token(tokenizer.lexeme, tokenizer.line, tokenizer.startColumn, 'misc'))
+    tokenizer.lexeme = ''
+    tokenizer.startColumn = tokenizer.currentColumn
+}
+
 function readString(tokenizer) {
     tokenizer.lexeme = ''
     tokenizer.getch()
 
     while (tokenizer.ch !== `'`) {
         tokenizer.lexeme += tokenizer.ch
-        tokenizer.getch()
+
+        if (tokenizer.ch !== `'`) {
+            tokenizer.getch()
+        }
     }
+
+    console.log(`ungetting.. ${tokenizer.ch} on '${tokenizer.lexeme}'`)
 
     tokenizer.tokens.push(new Token(tokenizer.lexeme, tokenizer.line, tokenizer.startColumn, 'str'))
     tokenizer.lexeme = ''
@@ -84,9 +101,11 @@ class Tokenizer {
                 this.line += 1
                 this.currentColumn = 1
             }
+        } else if (misc(this.ch)) {
+            readMisc(this)
         } else if (alpha(this.ch) || numeric(this.ch)) {
             readSymbol(this)
-        } else if (operator(this.ch) || misc(this.ch)) {
+        } else if (operator(this.ch)) {
             readOperator(this)
         } else if (this.ch === `'`) {
             readString(this)
@@ -106,6 +125,12 @@ class Tokenizer {
 
         this.currentColumn += 1
         this.ch = this.source.substr(this.pos++, 1)
+    }
+    ungetch() {
+        if (this.pos <= this.source.length) {
+            this.pos -= 1
+        }
+        this.currentColumn -= 1
     }
 }
 

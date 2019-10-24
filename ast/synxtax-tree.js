@@ -12,9 +12,6 @@ class SyntaxTree {
         this.ast = []
     }
     parse(parent = this.ast, verbose = false) {
-        if (verbose) {
-            console.log(`parsing ast: `, this.tokens)
-        }
         const token = this.pop()
 
         if (!token) {

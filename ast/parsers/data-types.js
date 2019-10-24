@@ -39,6 +39,12 @@ module.exports.parse = (parent, token, tree) => {
         throw ParseError.token(cur, `expected ${expectedType} or symbol when assigning to type ${token.lexeme}`)
     }
 
+    if (cur.type === 'symbol' && tree.peek() && tree.peek().lexeme === '(') {
+        tree.ast.unshift(cur)
+        const expressionTree = new tree.constructor(tree.ast)
+        expressionTree.parse()
+    }
+
     parent.push({
         type: 'expression',
         kind: 'assignment',
