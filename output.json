@@ -26,6 +26,11 @@
                 "name": "something",
                 "value": 52,
                 "valueType": "number"
+            },
+            {
+                "type": "statement",
+                "kind": "return",
+                "expressions": []
             }
         ]
     },

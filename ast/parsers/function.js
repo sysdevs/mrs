@@ -6,8 +6,6 @@ module.exports.shouldParse = token => {
 }
 
 module.exports.parse = (parent, token, tree) => {
-    console.log(`parsing function`)
-
     const name = tree.pop()
 
     if (!name) {
@@ -35,10 +33,7 @@ module.exports.parse = (parent, token, tree) => {
         throw ParseError.endOfFile(name, 'expected function body')
     }
 
-    console.log(`parsing function ${name.lexeme}:`, args)
-    console.log(tree.tokens)
-
-    let body = tree.parse([], true)
+    let body = tree.parse([])
 
     parent.push({
         type: 'statement',

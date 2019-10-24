@@ -1,5 +1,6 @@
 func add a b {
     i16 something = 52
+    return a * b + something
 }
 
 func main {
@@ -7,5 +8,11 @@ func main {
     str text1 = 'hello world'
     str text2 = 'fizz buzz'
 
-    i8 value = input
+    i8 value = input()
+
+    if (value > x) {
+        output(text1)
+    } else {
+        output(text2)
+    }
 }

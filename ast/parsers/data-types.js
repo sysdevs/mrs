@@ -6,7 +6,6 @@ module.exports.shouldParse = token => {
 }
 
 module.exports.parse = (parent, token, tree) => {
-    console.log(`parsing data type`)
     const name = tree.pop()
 
     if (!name) {

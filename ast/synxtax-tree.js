@@ -1,15 +1,20 @@
-const functionParser = require('./expression/function')
-const functionEnd = require('./expression/function-end')
-const dataTypeParser = require('./expression/data-types')
+const functionParser = require('./parsers/function')
+const functionEnd = require('./parsers/scope-end')
+const dataTypeParser = require('./parsers/data-types')
+const controlFlowParser = require('./parsers/control-flow')
+const expressionParser = require('./parsers/expression')
 
-const parsers = [ functionEnd, functionParser, dataTypeParser ]
+const parsers = [ functionEnd, functionParser, dataTypeParser, controlFlowParser, expressionParser ]
 
 class SyntaxTree {
     constructor(tokens) {
         this.tokens = tokens
         this.ast = []
     }
-    parse(parent = this.ast) {
+    parse(parent = this.ast, verbose = false) {
+        if (verbose) {
+            console.log(`parsing ast: `, this.tokens)
+        }
         const token = this.pop()
 
         if (!token) {
