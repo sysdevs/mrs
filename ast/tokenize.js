@@ -28,9 +28,6 @@ function readSymbol(tokenizer) {
         tokenizer.getch()
     }
 
-
-    console.log(`ungetting.. ${tokenizer.ch} on '${tokenizer.lexeme}'`)
-
     tokenizer.ungetch()
     
     if (tokenizer.lexeme.length > 0) {
@@ -73,8 +70,6 @@ function readString(tokenizer) {
             tokenizer.getch()
         }
     }
-
-    console.log(`ungetting.. ${tokenizer.ch} on '${tokenizer.lexeme}'`)
 
     tokenizer.tokens.push(new Token(tokenizer.lexeme, tokenizer.line, tokenizer.startColumn, 'str'))
     tokenizer.lexeme = ''
