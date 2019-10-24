@@ -16,25 +16,12 @@
         "body": [
             {
                 "type": "statement",
-                "kind": "declaration",
-                "name": "something",
-                "dataType": "i16"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "something",
-                "value": 52,
-                "valueType": "number"
-            },
-            {
-                "type": "statement",
                 "kind": "return",
                 "expressions": [
                     {
                         "type": "expression",
                         "kind": "operator",
-                        "operation": "*",
+                        "operation": "+",
                         "left": "a",
                         "right": "b"
                     }
@@ -73,19 +60,57 @@
                         "valueType": "str"
                     },
                     {
-                        "type": "expression",
-                        "kind": "str",
-                        "value": "\n    str text2 = "
+                        "type": "statement",
+                        "kind": "declaration",
+                        "name": "text2",
+                        "dataType": "str"
                     },
                     {
                         "type": "expression",
-                        "kind": "str",
-                        "value": "fizz buzz"
+                        "kind": "assignment",
+                        "name": "text2",
+                        "value": "fizz buzz",
+                        "valueType": "str"
+                    },
+                    {
+                        "type": "statement",
+                        "kind": "declaration",
+                        "name": "value",
+                        "dataType": "i8"
                     },
                     {
                         "type": "expression",
-                        "kind": "str",
-                        "value": "\n\n    i8 value = input()\n\n    if (value > x) {\n        output(text1)\n    } else {\n        output(text2)\n    }\n}\n"
+                        "kind": "assignment",
+                        "name": "value",
+                        "value": "input",
+                        "valueType": "symbol"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "operator",
+                        "operation": ">",
+                        "left": "value",
+                        "right": "x"
+                    },
+                    {
+                        "type": "function-call",
+                        "name": "output",
+                        "parameters": [
+                            {
+                                "type": "symbol",
+                                "name": "text1"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "function-call",
+                        "name": "output",
+                        "parameters": [
+                            {
+                                "type": "symbol",
+                                "name": "text2"
+                            }
+                        ]
                     }
                 ]
             }

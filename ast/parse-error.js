@@ -4,7 +4,7 @@ class ParseError extends Error {
         return new ParseError(text, token)
     }
     static endOfFile(token, expected = null) {
-        let text = `unexpected end of file near '${token.lexeme}'`
+        let text = `unexpected end of file near '${token.lexeme}' ${token.line}:${token.column}`
         if (expected) {
             text += ` ${expected}`
         }

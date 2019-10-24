@@ -28,13 +28,13 @@ function parseSymbol(parent, token, tree) {
 
             while (cur && cur.lexeme !== ')') {
                 parameters.push(cur)
-                tree.pop()
+                cur = tree.pop()
             }
 
             if (!cur) {
                 throw ParseError.endOfFile(next, 'expected closing parenthesis')
             }
-            if (cur.lexeme !== '}') {
+            if (cur.lexeme !== ')') {
                 throw ParseError.token(cur, 'expected closing parenthesis to function call')
             }
 
