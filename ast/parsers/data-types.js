@@ -25,32 +25,27 @@ module.exports.parse = (parent, token, tree) => {
         return tree.parse(parent)
     }
 
-    let cur = tree.pop()
+    tree.pop()
 
-    if (!tree.peek()) {
+    const expressions = []
+    const validExpressionTypes = ['symbol', 'str', 'operator', 'number', 'misc']
+
+    while (tree.peek() && validExpressionTypes.includes(tree.peek().type)) {
+        expressions.push(tree.pop())
+    }
+
+    if (expressions.length === 0) {
         throw ParseError.endOfFile(cur, 'expected assignment after =')
     }
 
-    cur = tree.pop()
-
-    const expectedType = keywords.intTypes.includes(token.lexeme) ? 'number' : 'str'
-
-    if (cur.type !== expectedType && cur.type !== 'symbol') {
-        throw ParseError.token(cur, `expected ${expectedType} or symbol when assigning to type ${token.lexeme}`)
-    }
-
-    if (cur.type === 'symbol' && tree.peek() && tree.peek().lexeme === '(') {
-        tree.ast.unshift(cur)
-        const expressionTree = new tree.constructor(tree.ast)
-        expressionTree.parse()
-    }
+    const expressionTree = new tree.constructor(expressions)
+    expressionTree.parse()
 
     parent.push({
         type: 'expression',
         kind: 'assignment',
         name: name.lexeme,
-        value: cur.type === 'number' ? +cur.lexeme : cur.lexeme,
-        valueType: cur.type
+        value: expressionTree.ast
     })
 
     return tree.parse(parent)

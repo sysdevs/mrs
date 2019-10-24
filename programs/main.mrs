@@ -12,6 +12,6 @@ func main {
     if (value > x) {
         output(text1)
     } else {
-        output(text2)
+        output('hello world')
     }
 }

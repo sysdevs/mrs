@@ -41,7 +41,8 @@ function parseSymbol(parent, token, tree) {
             const expressionTree = new tree.constructor(parameters)
 
             parent.push({
-                type: 'function-call',
+                type: 'expression',
+                kind: 'function-call',
                 name: token.lexeme,
                 parameters: expressionTree.parse()
             })

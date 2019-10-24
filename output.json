@@ -26,93 +26,117 @@
                         "right": "b"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "type": "statement",
+        "kind": "function",
+        "name": "main",
+        "arguments": [],
+        "body": [
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "x",
+                "dataType": "i32"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "x",
+                "value": [
+                    {
+                        "type": "expression",
+                        "kind": "number",
+                        "value": 5
+                    }
+                ]
             },
             {
                 "type": "statement",
-                "kind": "function",
-                "name": "main",
-                "arguments": [],
-                "body": [
-                    {
-                        "type": "statement",
-                        "kind": "declaration",
-                        "name": "x",
-                        "dataType": "i32"
-                    },
-                    {
-                        "type": "expression",
-                        "kind": "assignment",
-                        "name": "x",
-                        "value": 5,
-                        "valueType": "number"
-                    },
-                    {
-                        "type": "statement",
-                        "kind": "declaration",
-                        "name": "text1",
-                        "dataType": "str"
-                    },
+                "kind": "declaration",
+                "name": "text1",
+                "dataType": "str"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "text1",
+                "value": [
                     {
                         "type": "expression",
-                        "kind": "assignment",
-                        "name": "text1",
-                        "value": "hello world",
-                        "valueType": "str"
-                    },
-                    {
-                        "type": "statement",
-                        "kind": "declaration",
-                        "name": "text2",
-                        "dataType": "str"
-                    },
-                    {
-                        "type": "expression",
-                        "kind": "assignment",
-                        "name": "text2",
-                        "value": "fizz buzz",
-                        "valueType": "str"
-                    },
-                    {
-                        "type": "statement",
-                        "kind": "declaration",
-                        "name": "value",
-                        "dataType": "i8"
-                    },
-                    {
-                        "type": "expression",
-                        "kind": "assignment",
-                        "name": "value",
-                        "value": "input",
-                        "valueType": "symbol"
-                    },
-                    {
-                        "type": "expression",
-                        "kind": "operator",
-                        "operation": ">",
-                        "left": "value",
-                        "right": "x"
-                    },
-                    {
-                        "type": "function-call",
-                        "name": "output",
-                        "parameters": [
-                            {
-                                "type": "symbol",
-                                "name": "text1"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "function-call",
-                        "name": "output",
-                        "parameters": [
-                            {
-                                "type": "symbol",
-                                "name": "text2"
-                            }
-                        ]
+                        "kind": "str",
+                        "value": "hello world"
                     }
                 ]
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "text2",
+                "dataType": "str"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "text2",
+                "value": [
+                    {
+                        "type": "expression",
+                        "kind": "str",
+                        "value": "fizz buzz"
+                    }
+                ]
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
+                "name": "value",
+                "dataType": "i8"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "value",
+                "value": [
+                    {
+                        "type": "expression",
+                        "kind": "function-call",
+                        "name": "input",
+                        "parameters": []
+                    }
+                ]
+            },
+            {
+                "type": "expression",
+                "kind": "operator",
+                "operation": ">",
+                "left": "value",
+                "right": "x"
+            },
+            {
+                "type": "expression",
+                "kind": "function-call",
+                "name": "output",
+                "parameters": [
+                    {
+                        "type": "symbol",
+                        "name": "text1"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "expression",
+        "kind": "function-call",
+        "name": "output",
+        "parameters": [
+            {
+                "type": "expression",
+                "kind": "str",
+                "value": "hello world"
             }
         ]
     }
