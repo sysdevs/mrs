@@ -1,13 +1,12 @@
-const intTypes = ['i8', 'i16', 'i32']
-const strType = 'str'
 const controlFlow = ['if', 'else', 'return']
 const funcType = 'func'
 const operators = ['+', '-', '*', '/', '>', '<', '=']
+const dataTypes = ['int', 'str']
 
-module.exports.intTypes = intTypes
-module.exports.strType = strType
+module.exports.operators = operators
+
 module.exports.controlFlow = controlFlow
 module.exports.funcType = funcType
-module.exports.operators = operators
-module.exports.dataTypes = [...intTypes, strType]
-module.exports.keywords = [...intTypes, strType, ...controlFlow, funcType]
+module.exports.dataTypes = dataTypes
+
+module.exports.keywords = [...dataTypes, ...controlFlow, funcType]

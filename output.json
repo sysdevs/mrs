@@ -17,7 +17,7 @@
             {
                 "type": "statement",
                 "kind": "return",
-                "expressions": [
+                "expression": [
                     {
                         "type": "expression",
                         "kind": "operator",
@@ -39,7 +39,7 @@
                 "type": "statement",
                 "kind": "declaration",
                 "name": "x",
-                "dataType": "i32"
+                "dataType": "int"
             },
             {
                 "type": "expression",
@@ -48,44 +48,20 @@
                 "value": [
                     {
                         "type": "expression",
-                        "kind": "number",
-                        "value": 5
-                    }
-                ]
-            },
-            {
-                "type": "statement",
-                "kind": "declaration",
-                "name": "text1",
-                "dataType": "str"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "text1",
-                "value": [
-                    {
-                        "type": "expression",
-                        "kind": "str",
-                        "value": "hello world"
-                    }
-                ]
-            },
-            {
-                "type": "statement",
-                "kind": "declaration",
-                "name": "text2",
-                "dataType": "str"
-            },
-            {
-                "type": "expression",
-                "kind": "assignment",
-                "name": "text2",
-                "value": [
-                    {
-                        "type": "expression",
-                        "kind": "str",
-                        "value": "fizz buzz"
+                        "kind": "function-call",
+                        "name": "add",
+                        "parameters": [
+                            {
+                                "type": "expression",
+                                "kind": "number",
+                                "value": 5
+                            },
+                            {
+                                "type": "expression",
+                                "kind": "number",
+                                "value": 10
+                            }
+                        ]
                     }
                 ]
             },
@@ -93,7 +69,7 @@
                 "type": "statement",
                 "kind": "declaration",
                 "name": "value",
-                "dataType": "i8"
+                "dataType": "int"
             },
             {
                 "type": "expression",
@@ -109,34 +85,91 @@
                 ]
             },
             {
-                "type": "expression",
-                "kind": "operator",
-                "operation": ">",
-                "left": "value",
-                "right": "x"
+                "type": "statement",
+                "kind": "declaration",
+                "name": "text",
+                "dataType": "str"
             },
             {
                 "type": "expression",
-                "kind": "function-call",
-                "name": "output",
-                "parameters": [
+                "kind": "assignment",
+                "name": "text",
+                "value": [
                     {
-                        "type": "symbol",
-                        "name": "text1"
+                        "type": "expression",
+                        "kind": "str",
+                        "value": "hello world"
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "type": "expression",
-        "kind": "function-call",
-        "name": "output",
-        "parameters": [
+            },
             {
-                "type": "expression",
-                "kind": "str",
-                "value": "hello world"
+                "type": "statement",
+                "kind": "if",
+                "predicate": [
+                    {
+                        "type": "expression",
+                        "kind": "operator",
+                        "operation": ">",
+                        "left": "value",
+                        "right": "x"
+                    }
+                ],
+                "body": [
+                    {
+                        "type": "expression",
+                        "kind": "function-call",
+                        "name": "print",
+                        "parameters": [
+                            {
+                                "type": "symbol",
+                                "name": "text"
+                            }
+                        ]
+                    }
+                ],
+                "else": [
+                    {
+                        "type": "statement",
+                        "kind": "if",
+                        "predicate": [
+                            {
+                                "type": "expression",
+                                "kind": "operator",
+                                "operation": "=",
+                                "left": "value",
+                                "right": "0"
+                            }
+                        ],
+                        "body": [
+                            {
+                                "type": "expression",
+                                "kind": "function-call",
+                                "name": "print",
+                                "parameters": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "str",
+                                        "value": "goodbye world"
+                                    }
+                                ]
+                            }
+                        ],
+                        "else": [
+                            {
+                                "type": "expression",
+                                "kind": "function-call",
+                                "name": "print",
+                                "parameters": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "str",
+                                        "value": "goodnight world"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }

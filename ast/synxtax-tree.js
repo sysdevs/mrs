@@ -11,7 +11,7 @@ class SyntaxTree {
         this.tokens = tokens
         this.ast = []
     }
-    parse(parent = this.ast, verbose = false) {
+    parse(parent = this.ast) {
         const token = this.pop()
 
         if (!token) {
