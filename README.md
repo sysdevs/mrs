@@ -9,21 +9,23 @@ You can also find an online (in-browser) MARIE compiler, virtual machine, and va
 ## Example program
 ```
 func add a b {
-    i16 something = 52
-    return a * b + something
+    return a + b
 }
 
 func main {
-    i32 x = 5
-    str text1 = 'hello world'
-    str text2 = 'fizz buzz'
+    int x = add(5 10)
+    int value = input()
 
-    i8 value = input()
+    str text = 'hello world'
 
     if (value > x) {
-        output(text1)
+        print(text)
     } else {
-        output(text2)
+        if (value = 0) {
+            print('goodbye world')
+        } else {
+            print('goodnight world')
+        }
     }
 }
 ```
