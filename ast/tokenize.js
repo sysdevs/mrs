@@ -33,7 +33,7 @@ function readSymbol(tokenizer) {
     if (tokenizer.lexeme.length > 0) {
         let type = 'symbol'
 
-        if (+tokenizer.lexeme) {
+        if (+tokenizer.lexeme || tokenizer.lexeme === '0') {
             type = 'number'
         } else if (keywords.keywords.includes(tokenizer.lexeme)) {
             type = 'keyword'

@@ -22,8 +22,18 @@
                         "type": "expression",
                         "kind": "operator",
                         "operation": "+",
-                        "left": "a",
-                        "right": "b"
+                        "left": [
+                            {
+                                "type": "symbol",
+                                "name": "a"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "symbol",
+                                "name": "b"
+                            }
+                        ]
                     }
                 ]
             }
@@ -110,8 +120,18 @@
                         "type": "expression",
                         "kind": "operator",
                         "operation": ">",
-                        "left": "value",
-                        "right": "x"
+                        "left": [
+                            {
+                                "type": "symbol",
+                                "name": "value"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "symbol",
+                                "name": "x"
+                            }
+                        ]
                     }
                 ],
                 "body": [
@@ -136,8 +156,19 @@
                                 "type": "expression",
                                 "kind": "operator",
                                 "operation": "=",
-                                "left": "value",
-                                "right": "0"
+                                "left": [
+                                    {
+                                        "type": "symbol",
+                                        "name": "value"
+                                    }
+                                ],
+                                "right": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "number",
+                                        "value": 0
+                                    }
+                                ]
                             }
                         ],
                         "body": [

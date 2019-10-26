@@ -15,12 +15,20 @@ function parseSymbol(parent, token, tree) {
             if (operand.type !== 'symbol' && operand.type !== 'number') {
                 throw ParseError.token(operand, 'operand expected to be symbol or numeric constant')
             }
+
+    
+            const leftTree = new tree.constructor([token])
+            leftTree.parse()
+
+            const rightTree = new tree.constructor([operand])
+            rightTree.parse()
+
             parent.push({
                 type: 'expression',
                 kind: 'operator',
                 operation: next.lexeme,
-                left: token.lexeme,
-                right: operand.lexeme
+                left: leftTree.ast,
+                right: rightTree.ast
             })
         } else if (next.lexeme === '(') {
             const parameters = []

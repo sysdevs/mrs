@@ -11,5 +11,8 @@
     "url": "git+https://github.com/sysdevs/mrs.git"
   },
   "author": "Zachary Penn",
-  "license": "GPL-3.0-only"
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "yargs": "^14.2.0"
+  }
 }
