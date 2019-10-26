@@ -2,6 +2,7 @@ const fs = require('fs')
 const Tokenizer = require('./ast/tokenize')
 const SyntaxTree = require('./ast/synxtax-tree')
 const ConstantPool = require('./codegen/constant-pool')
+const CodeGenerator = require('./codegen/code-generator')
 
 const yargs = require('yargs')
 
@@ -30,10 +31,10 @@ try {
         fs.writeFileSync('ast.json', JSON.stringify(syntaxTree.ast, null, 4))
     }
 
-    const constantPool = new ConstantPool(syntaxTree.ast)
-    constantPool.parse()
+    const codeGenerator = new CodeGenerator(syntaxTree.ast, 'marie')
+    const asmSource = codeGenerator.generate()
 
-    console.log(constantPool.constants)
+    fs.writeFileSync('program.mas', asmSource)
 } catch (error) {
     console.error('error while compiling program')
     console.error(error)

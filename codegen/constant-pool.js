@@ -1,35 +1,31 @@
 const CodeGenerationError = require('./codegen-error')
-
-function getOperatorConsts(pool, operator) {
-
-}
+const LabelGenerator = require('./label-generator')
 
 class ConstantPool {
-    constructor(ast) {
+    constructor(ast, prefix) {
         this.ast = ast
         this.counter = 0
         this.constants = new Map()
+        this.labelGenerator = new LabelGenerator(prefix)
     }
 
-    parse(tree = this.ast, prefix = 'mrs__') {
+    parse(tree = this.ast) {
         for (const element of tree) {
-            console.log(`parsing const pool ${element.type}: ${element.kind}`)
-
             switch (element.type) {
             case 'statement':
                 switch (element.kind) {
                     case 'function':
-                        this.parse(element.body, `${prefix}${element.name}`)
+                        this.parse(element.body)
                         break
                     case 'return':
-                        this.parse(element.expression, prefix)
+                        this.parse(element.expression)
                         break
                     case 'if':
-                        this.parse(element.predicate, prefix)
-                        this.parse(element.body, prefix)
+                        this.parse(element.predicate)
+                        this.parse(element.body)
                         
                         if (element.else) {
-                            this.parse(element.else, prefix)
+                            this.parse(element.else)
                         }
                     default:
                         break
@@ -39,20 +35,20 @@ class ConstantPool {
             case 'expression':
                 switch (element.kind) {
                     case 'function-call':
-                        this.parse(element.parameters, `${prefix}$${element.name}`)
+                        this.parse(element.parameters)
                         break
                     case 'operator':
-                        this.parse(element.left, prefix)
-                        this.parse(element.right, prefix)
+                        this.parse(element.left)
+                        this.parse(element.right)
                         break
                     case 'assignment':
-                        this.parse(element.value, prefix)
+                        this.parse(element.value)
                         break
                     case 'number':
-                        this.set(`${prefix}_${element.kind}${this.counter++}`, element.value)
+                        this.set(element.value)
                         break
                     case 'str':
-                        this.set(`${prefix}_${element.kind}${this.counter++}`, element.value)
+                        this.set(element.value)
                         break
                 }
                 break
@@ -60,7 +56,9 @@ class ConstantPool {
         }
     }
 
-    set(name, value) {
+    set(value) {
+        const name = `${this.labelGenerator.next()}`
+        
         if (this.constants.has(name.toLowerCase())) {
             const other = this.constants.get(name.toLowerCase())
 
@@ -72,8 +70,13 @@ class ConstantPool {
         this.constants.set(name.toLowerCase(), value)
     }
 
-    [Symbol.iterator]() {
-        return this.constants
+    constantName(constant) {
+        for (const [k, v] of this.constants) {
+            if (v === constant) {
+                return k
+            }
+        }
+        return null
     }
 }
 
