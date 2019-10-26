@@ -1,0 +1,54 @@
+jns mrs_main
+halt
+mrs_add, hex 0000
+jump mrs_add
+mrs_main, hex 0000
+jump mrs_main
+mrs___const0, dec 5
+mrs___const1, dec 10
+mrs___const2_ptr, hex 0x11
+mrs___const2, dec 104
+ dec 101
+ dec 108
+ dec 108
+ dec 111
+ dec 32
+ dec 119
+ dec 111
+ dec 114
+ dec 108
+ dec 100
+ dec 0
+mrs___const3, dec 0
+mrs___const4_ptr, hex 0x1f
+mrs___const4, dec 103
+ dec 111
+ dec 111
+ dec 100
+ dec 98
+ dec 121
+ dec 101
+ dec 32
+ dec 119
+ dec 111
+ dec 114
+ dec 108
+ dec 100
+ dec 0
+mrs___const5_ptr, hex 0x2e
+mrs___const5, dec 103
+ dec 111
+ dec 111
+ dec 100
+ dec 110
+ dec 105
+ dec 103
+ dec 104
+ dec 116
+ dec 32
+ dec 119
+ dec 111
+ dec 114
+ dec 108
+ dec 100
+ dec 0
