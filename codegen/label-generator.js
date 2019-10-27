@@ -4,7 +4,7 @@ class LabelGenerator {
         this.counter = 0
     }
     next() {
-        return `${this.prefix}_const${this.counter++}`
+        return `${this.prefix}const${this.counter++}`
     }
 }
 

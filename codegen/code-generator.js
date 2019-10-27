@@ -2,6 +2,7 @@ const path = require('path')
 
 const CodeGenerationError = require('./codegen-error')
 const ConstantPool = require('./constant-pool')
+const SourceLayout = require('./source-layout')
 
 class CodeGenerator {
     constructor(ast, arch = 'marie', prefix = 'mrs_') {
@@ -9,10 +10,13 @@ class CodeGenerator {
         this.prefix = prefix
         this.arch = {
             Constants: require(path.resolve(__dirname, arch, 'constants')),
-            Function: require(path.resolve(__dirname, arch, 'function'))
+            Function: require(path.resolve(__dirname, arch, 'function')),
+            Stack: require(path.resolve(__dirname, arch, 'stack')),
         }
 
+        this.sourceLayout = new SourceLayout()
         this.constantPool = new ConstantPool(ast, prefix)
+
         this.functions = new Map()
 
         for (const node of this.ast) {
@@ -33,23 +37,20 @@ class CodeGenerator {
     }
 
     generate() {
-        const consts = new this.arch.Constants(this.constantPool)
-        let memoryOffset = 0
-
-        let source = `jns ${this.prefix}main\n`
-        source += 'halt\n'
-        memoryOffset += 2
+        this.sourceLayout.pushInstruction('jns', `${this.prefix}main`)
+        this.sourceLayout.pushInstruction('halt')
 
         for (const func of this.functions.values()) {
-            const [funcSource, offset] = func.generate(memoryOffset)
-
-            source += funcSource
-            memoryOffset += offset
+            func.generate(this.sourceLayout)
         }
 
-        // lastly, add constants
-        source += consts.generate(memoryOffset)
-        return source
+        const stack = new this.arch.Stack()
+        stack.generate(this.prefix, this.sourceLayout, this.constantPool)
+
+        const consts = new this.arch.Constants(this.constantPool)
+        consts.generate(this.sourceLayout)
+
+        return this.sourceLayout.instructions.join('\n')
     }
 }
 

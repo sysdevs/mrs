@@ -6,15 +6,17 @@ class Function {
     name() {
         return `${this.generator.prefix}${this.node.name}`
     }
-    generate(memoryOffset) {
-        let source = `${this.name()}, hex 0000\n`
-        memoryOffset += 1
-
+    generate(sourceLayout) {
+        sourceLayout.pushInstruction(`${this.name()},`, 'hex', '0000')
+        sourceLayout.begin(4)
+        
         // add body
+        for (const child of this.node.body) {
+            console.log(child)
+        }
 
-        source += `jump ${this.name()}\n`
-        memoryOffset += 1
-        return [source, memoryOffset]
+        sourceLayout.pushInstruction('jumpi', this.name())
+        sourceLayout.end(4)
     }
 }
 

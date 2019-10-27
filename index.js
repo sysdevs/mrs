@@ -34,7 +34,7 @@ try {
     const codeGenerator = new CodeGenerator(syntaxTree.ast, 'marie')
     const asmSource = codeGenerator.generate()
 
-    fs.writeFileSync('program.mas', asmSource)
+    fs.writeFileSync('program.mas', asmSource.trim())
 } catch (error) {
     console.error('error while compiling program')
     console.error(error)
