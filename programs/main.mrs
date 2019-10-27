@@ -4,17 +4,4 @@ func add a b {
 
 func main {
     int x = add(5 10)
-    int value = input()
-
-    str text = 'hello world'
-
-    if (value > x) {
-        print(text)
-    } else {
-        if (value = 0) {
-            print('goodbye world')
-        } else {
-            print('goodnight world')
-        }
-    }
 }

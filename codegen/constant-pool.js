@@ -6,7 +6,7 @@ class ConstantPool {
         this.ast = ast
         this.counter = 0
         this.constants = new Map()
-        this.labelGenerator = new LabelGenerator(prefix)
+        this.labelGenerator = new LabelGenerator(`${prefix}const`)
     }
 
     parse(tree = this.ast) {

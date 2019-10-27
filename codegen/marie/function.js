@@ -1,3 +1,5 @@
+const CodeGenerationError = require('../codegen-error')
+
 class Function {
     constructor(generator, node) {
         this.generator = generator
@@ -6,13 +8,14 @@ class Function {
     name() {
         return `${this.generator.prefix}${this.node.name}`
     }
-    generate(sourceLayout) {
+    generate(marieCodeGen) {
+        const sourceLayout = marieCodeGen.sourceLayout
+    
         sourceLayout.pushInstruction(`${this.name()},`, 'hex', '0000')
         sourceLayout.begin(4)
         
-        // add body
         for (const child of this.node.body) {
-            console.log(child)
+            this.generator.generateNode(child)
         }
 
         sourceLayout.pushInstruction('jumpi', this.name())

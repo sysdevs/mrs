@@ -2,19 +2,11 @@ class Stack {
     generate(prefix, sourceLayout, constantPool) {
         const name = `${prefix}stack_`
         
-        this.addInit(sourceLayout, name)
         this.addPush(sourceLayout, name)
         this.addPop(sourceLayout, name)
 
         constantPool.constants.set(`${name}ptr`, 0xC00)
         constantPool.constants.set(`${name}step`, 0x1)
-    }
-    addInit(sourceLayout, name) {
-        const instructions = [
-            ['store', `${name}ptr`]
-        ]
-
-        this.add(`${name}init`, instructions, sourceLayout)
     }
     addPush(sourceLayout, name) {
         const instructions = [
@@ -29,7 +21,7 @@ class Stack {
     addPop(sourceLayout, name) {
         const instructions = [
             ['load', `${name}ptr`],
-            ['subt', `${name}ptr`],
+            ['subt', `${name}step`],
             ['store', `${name}ptr`]
         ]
 
