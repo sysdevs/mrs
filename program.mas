@@ -18,6 +18,8 @@ mrs_main, hex 0000
     jns mrs_stack_pop
     loadi mrs_stack_ptr
     store mrs_var1
+    load mrs_var1
+    output 
     jumpi mrs_main
 mrs_stack_push, hex 0000
     storei mrs_stack_ptr
@@ -27,7 +29,7 @@ mrs_stack_push, hex 0000
     jumpi mrs_stack_push
 mrs_stack_pop, hex 0000
     load mrs_stack_ptr
-    subt mrs_stack_ptr
+    subt mrs_stack_step
     store mrs_stack_ptr
     jumpi mrs_stack_pop
 mrs_const0, dec 5

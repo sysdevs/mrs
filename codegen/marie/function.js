@@ -16,6 +16,7 @@ class Function {
         
         for (const child of this.node.body) {
             this.generator.generateNode(child)
+            console.log(`generating for ${child.kind}`)
         }
 
         sourceLayout.pushInstruction('jumpi', this.name())

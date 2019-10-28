@@ -23,7 +23,8 @@ module.exports.parse = (parent, token, tree) => {
 
     while (cur && cur.lexeme !== '{' && cur.type === 'symbol') {
         args.push({
-            type: 'symbol',
+            type: 'expression',
+            kind: 'symbol',
             name: cur.lexeme
         })
         cur = tree.pop()

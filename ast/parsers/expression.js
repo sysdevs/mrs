@@ -57,7 +57,8 @@ function parseSymbol(parent, token, tree) {
         }
     } else {
         parent.push({
-            type: 'symbol',
+            type: 'expression',
+            kind: 'symbol',
             name: token.lexeme
         })
     }
@@ -106,6 +107,9 @@ module.exports.parse = (parent, token, tree) => {
             return parseOperator(parent, token, tree)
         case 'str':
             return parseString(parent, token, tree)
+        case 'linebreak':
+            // do nothing on line breaks
+            return tree.parse(parent)
         default:
             throw ParseError.token(token, 'unknown token type')
     }

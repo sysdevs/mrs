@@ -3,7 +3,8 @@ module.exports = (node, codeGen) => {
         case '+':
             // TODO make a temp var system?
             // store the first param in a temp variable
-            const tmpVar = codeGen.variablePool.find('tmp0')
+            const tmpName = codeGen.variablePool.nextTemp()
+            const tmpVar = codeGen.variablePool.find(tmpName)
 
             codeGen.popStack()
             codeGen.loadStackPointer()
@@ -12,6 +13,8 @@ module.exports = (node, codeGen) => {
             codeGen.popStack()
             codeGen.loadStackPointer()
             codeGen.sourceLayout.pushInstruction('add', tmpVar)
+
+            codeGen.variablePool.releaseTemp(tmpName)
             break
         case '-':
             break

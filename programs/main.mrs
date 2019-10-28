@@ -4,4 +4,5 @@ func add a b {
 
 func main {
     int x = add(5 10)
+    output(x)
 }
