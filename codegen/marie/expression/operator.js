@@ -1,8 +1,8 @@
+const CodeGenerationError = require('../../code-generator')
+
 module.exports = (node, codeGen) => {
     switch (node.operation) {
         case '+': {
-            // TODO make a temp var system?
-            // store the first param in a temp variable
             const tmpName = codeGen.variablePool.nextTemp()
             const tmpVar = codeGen.variablePool.find(tmpName)
 
@@ -34,5 +34,30 @@ module.exports = (node, codeGen) => {
             break
         case '/':
             break
+        case '=': {
+            const varName = codeGen.variablePool.find(node.left[0].name)
+            let shouldPop = false
+
+            for (const expr of node.right) {
+                if (shouldPop) {
+                    codeGen.popStack()
+                    codeGen.loadStackPointer()
+                    shouldPop = false
+                }
+
+                codeGen.generateNode(expr)
+
+                if (expr.kind === 'function-call') {
+                    shouldPop = true
+                }
+            }
+
+            if (shouldPop) {
+                codeGen.popStack()
+                codeGen.loadStackPointer()
+            }
+    
+            codeGen.sourceLayout.pushInstruction('store', varName)
+        } break
     }
 }

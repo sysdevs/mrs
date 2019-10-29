@@ -6,21 +6,18 @@ function parseSymbol(parent, token, tree) {
     if (next) {
         if (next.type === 'operator') {
             tree.pop()
-            const operand = tree.pop()
+            const operands = []
+            let operand = tree.pop()
 
-            if (!operand) {
-                throw ParseError.endOfFile(next, 'expected operand to operator')
+            while (operand && operand.type !== 'linebreak') {
+                operands.push(operand)
+                operand = tree.pop()
             }
-
-            if (operand.type !== 'symbol' && operand.type !== 'number') {
-                throw ParseError.token(operand, 'operand expected to be symbol or numeric constant')
-            }
-
     
             const leftTree = new tree.constructor([token])
             leftTree.parse()
 
-            const rightTree = new tree.constructor([operand])
+            const rightTree = new tree.constructor(operands)
             rightTree.parse()
 
             parent.push({

@@ -7,8 +7,9 @@ func sub a b {
 }
 
 func main {
+    int a = input()
     int x = add(5 10)
 
-    sub(x 2)
-    output(x)
+    x = sub(x a)
+    print(x)
 }

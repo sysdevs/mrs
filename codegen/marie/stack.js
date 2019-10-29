@@ -5,14 +5,14 @@ class Stack {
         this.addPush(sourceLayout, name)
         this.addPop(sourceLayout, name)
 
-        constantPool.constants.set(`${name}ptr`, 0xC00)
+        constantPool.constants.set(`${name}ptr`, 0xFFF)
         constantPool.constants.set(`${name}step`, 0x1)
     }
     addPush(sourceLayout, name) {
         const instructions = [
             ['storei', `${name}ptr`],
             ['load', `${name}ptr`],
-            ['add', `${name}step`],
+            ['subt', `${name}step`],
             ['store', `${name}ptr`],
         ]
 
@@ -21,7 +21,7 @@ class Stack {
     addPop(sourceLayout, name) {
         const instructions = [
             ['load', `${name}ptr`],
-            ['subt', `${name}step`],
+            ['add', `${name}step`],
             ['store', `${name}ptr`]
         ]
 

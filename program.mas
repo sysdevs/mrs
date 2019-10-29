@@ -1,6 +1,6 @@
 jns mrs_main
 halt 
-mrs_add, hex 0000
+mrs_add, hex 000
     jns mrs_stack_pop
     loadi mrs_stack_ptr
     store mrs_var0
@@ -9,7 +9,7 @@ mrs_add, hex 0000
     add mrs_var0
     jns mrs_stack_push
     jumpi mrs_add
-mrs_sub, hex 0000
+mrs_sub, hex 000
     jns mrs_stack_pop
     loadi mrs_stack_ptr
     store mrs_var0
@@ -18,7 +18,12 @@ mrs_sub, hex 0000
     subt mrs_var0
     jns mrs_stack_push
     jumpi mrs_sub
-mrs_main, hex 0000
+mrs_main, hex 000
+    input 
+    jns mrs_stack_push
+    jns mrs_stack_pop
+    loadi mrs_stack_ptr
+    store mrs_var1
     load mrs_const0
     jns mrs_stack_push
     load mrs_const1
@@ -26,30 +31,33 @@ mrs_main, hex 0000
     jns mrs_add
     jns mrs_stack_pop
     loadi mrs_stack_ptr
-    store mrs_var1
-    load mrs_var1
+    store mrs_var2
+    load mrs_var2
     jns mrs_stack_push
-    load mrs_const2
+    load mrs_var1
     jns mrs_stack_push
     jns mrs_sub
-    load mrs_var1
+    jns mrs_stack_pop
+    loadi mrs_stack_ptr
+    store mrs_var2
+    load mrs_var2
     output 
     jumpi mrs_main
 mrs_stack_push, hex 0000
     storei mrs_stack_ptr
     load mrs_stack_ptr
-    add mrs_stack_step
+    subt mrs_stack_step
     store mrs_stack_ptr
     jumpi mrs_stack_push
 mrs_stack_pop, hex 0000
     load mrs_stack_ptr
-    subt mrs_stack_step
+    add mrs_stack_step
     store mrs_stack_ptr
     jumpi mrs_stack_pop
 mrs_const0, dec 5
 mrs_const1, dec 10
-mrs_const2, dec 2
-mrs_stack_ptr, dec 3072
+mrs_stack_ptr, dec 4095
 mrs_stack_step, dec 1
 mrs_var0, dec 0
 mrs_var1, dec 0
+mrs_var2, dec 0

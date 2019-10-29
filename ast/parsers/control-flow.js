@@ -47,7 +47,6 @@ function readBody(token, tree, name, open, close) {
 }
 
 function readIfStatement(parent, token, tree) {
-    const tokens = []
     let next = tree.pop()
 
     if (!next || next.lexeme !== '(') {

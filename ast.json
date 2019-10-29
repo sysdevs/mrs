@@ -96,6 +96,25 @@
             {
                 "type": "statement",
                 "kind": "declaration",
+                "name": "a",
+                "dataType": "int"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "a",
+                "value": [
+                    {
+                        "type": "expression",
+                        "kind": "function-call",
+                        "name": "input",
+                        "parameters": []
+                    }
+                ]
+            },
+            {
+                "type": "statement",
+                "kind": "declaration",
                 "name": "x",
                 "dataType": "int"
             },
@@ -119,41 +138,52 @@
                                 "kind": "number",
                                 "value": 10
                             }
-                        ],
-                        "hasParameters": false
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "expression",
+                "kind": "operator",
+                "operation": "=",
+                "left": [
+                    {
+                        "type": "expression",
+                        "kind": "symbol",
+                        "name": "x"
+                    }
+                ],
+                "right": [
+                    {
+                        "type": "expression",
+                        "kind": "function-call",
+                        "name": "sub",
+                        "parameters": [
+                            {
+                                "type": "expression",
+                                "kind": "symbol",
+                                "name": "x"
+                            },
+                            {
+                                "type": "expression",
+                                "kind": "symbol",
+                                "name": "a"
+                            }
+                        ]
                     }
                 ]
             },
             {
                 "type": "expression",
                 "kind": "function-call",
-                "name": "sub",
-                "parameters": [
-                    {
-                        "type": "expression",
-                        "kind": "symbol",
-                        "name": "x"
-                    },
-                    {
-                        "type": "expression",
-                        "kind": "number",
-                        "value": 2
-                    }
-                ],
-                "hasParameters": false
-            },
-            {
-                "type": "expression",
-                "kind": "function-call",
-                "name": "output",
+                "name": "print",
                 "parameters": [
                     {
                         "type": "expression",
                         "kind": "symbol",
                         "name": "x"
                     }
-                ],
-                "hasParameters": false
+                ]
             }
         ]
     }
