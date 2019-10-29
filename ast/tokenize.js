@@ -19,6 +19,7 @@ class Token {
 function readWhitespace(tokenizer) {
     tokenizer.startColumn = tokenizer.currentColumn
     if (tokenizer.ch === '\n') {
+        tokenizer.lexeme == tokenizer.ch
         tokenizer.tokens.push(new Token(tokenizer.lexeme, tokenizer.line, tokenizer.startColumn, 'linebreak'))
     }
 }

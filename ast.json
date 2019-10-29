@@ -46,6 +46,50 @@
     {
         "type": "statement",
         "kind": "function",
+        "name": "sub",
+        "arguments": [
+            {
+                "type": "expression",
+                "kind": "symbol",
+                "name": "a"
+            },
+            {
+                "type": "expression",
+                "kind": "symbol",
+                "name": "b"
+            }
+        ],
+        "body": [
+            {
+                "type": "statement",
+                "kind": "return",
+                "expression": [
+                    {
+                        "type": "expression",
+                        "kind": "operator",
+                        "operation": "-",
+                        "left": [
+                            {
+                                "type": "expression",
+                                "kind": "symbol",
+                                "name": "a"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "expression",
+                                "kind": "symbol",
+                                "name": "b"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "statement",
+        "kind": "function",
         "name": "main",
         "arguments": [],
         "body": [
@@ -75,9 +119,28 @@
                                 "kind": "number",
                                 "value": 10
                             }
-                        ]
+                        ],
+                        "hasParameters": false
                     }
                 ]
+            },
+            {
+                "type": "expression",
+                "kind": "function-call",
+                "name": "sub",
+                "parameters": [
+                    {
+                        "type": "expression",
+                        "kind": "symbol",
+                        "name": "x"
+                    },
+                    {
+                        "type": "expression",
+                        "kind": "number",
+                        "value": 2
+                    }
+                ],
+                "hasParameters": false
             },
             {
                 "type": "expression",
@@ -89,7 +152,8 @@
                         "kind": "symbol",
                         "name": "x"
                     }
-                ]
+                ],
+                "hasParameters": false
             }
         ]
     }

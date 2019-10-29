@@ -1,7 +1,7 @@
 const CodeGenerationError = require('../../codegen-error')
 
 module.exports = (node, codeGen) => {
-    let name = codeGen.variablePool.find(node.name, false)
+    let name = codeGen.variablePool.find(node.name)
 
     if (!name) {
         name = codeGen.constantPool.constantName(node.name)

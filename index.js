@@ -10,7 +10,7 @@ const yargs = require('yargs')
 const argv = yargs
     .option('ast', {
         alias: 'a',
-        description: 'dumps the abrast syntax tree to ast.json',
+        description: 'dumps the abstract syntax tree to ast.json',
         type: 'boolean'
     })
     .help()

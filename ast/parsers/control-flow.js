@@ -83,7 +83,7 @@ function readIfStatement(parent, token, tree) {
 
 function readReturnStatement(parent, token, tree) {
     const tokens = []
-    let next = tree.peek()
+    let next = tree.pop()
 
     // return statements MUST have a } to end their parsing :\
     // possible solution to this is to add statement delimeters (like a semicolon)

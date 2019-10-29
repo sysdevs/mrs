@@ -32,18 +32,11 @@ function parseSymbol(parent, token, tree) {
             })
         } else if (next.lexeme === '(') {
             const parameters = []
-            let cur = tree.peek()
+            let cur = tree.pop()
 
-            while (cur && cur.lexeme !== ')') {
+            while (cur && cur.type !== 'linebreak') {
                 parameters.push(cur)
                 cur = tree.pop()
-            }
-
-            if (!cur) {
-                throw ParseError.endOfFile(next, 'expected closing parenthesis')
-            }
-            if (cur.lexeme !== ')') {
-                throw ParseError.token(cur, 'expected closing parenthesis to function call')
             }
 
             const expressionTree = new tree.constructor(parameters)
@@ -53,6 +46,12 @@ function parseSymbol(parent, token, tree) {
                 kind: 'function-call',
                 name: token.lexeme,
                 parameters: expressionTree.parse()
+            })
+        } else {
+            parent.push({
+                type: 'expression',
+                kind: 'symbol',
+                name: token.lexeme
             })
         }
     } else {

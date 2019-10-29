@@ -11,12 +11,11 @@ class Function {
     generate(marieCodeGen) {
         const sourceLayout = marieCodeGen.sourceLayout
     
-        sourceLayout.pushInstruction(`${this.name()},`, 'hex', '0000')
+        sourceLayout.pushInstruction(`${this.name()},`, 'hex', '000')
         sourceLayout.begin(4)
         
         for (const child of this.node.body) {
             this.generator.generateNode(child)
-            console.log(`generating for ${child.kind}`)
         }
 
         sourceLayout.pushInstruction('jumpi', this.name())
