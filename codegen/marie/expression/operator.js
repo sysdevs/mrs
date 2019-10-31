@@ -1,5 +1,3 @@
-const CodeGenerationError = require('../../code-generator')
-
 module.exports = (node, codeGen) => {
     switch (node.operation) {
         case '+': {
@@ -58,6 +56,25 @@ module.exports = (node, codeGen) => {
             }
     
             codeGen.sourceLayout.pushInstruction('store', varName)
+        } break
+        case '>': {
+            const leftName = codeGen.variablePool.nextTemp()
+            const leftVar = codeGen.variablePool.find(leftName)
+
+            for (const left of node.left) {
+                codeGen.generateNode(left)
+            }
+
+            codeGen.sourceLayout.pushInstruction('store', leftVar)
+
+            for (const right of node.right) {
+                codeGen.generateNode(right)
+            }
+
+            codeGen.sourceLayout.pushInstruction('subt', leftVar)
+            codeGen.pushStack()
+
+            codeGen.variablePool.releaseTemp(leftName)
         } break
     }
 }

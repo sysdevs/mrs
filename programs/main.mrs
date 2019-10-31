@@ -7,9 +7,9 @@ func sub a b {
 }
 
 func main {
-    int a = input()
-    int x = add(5 10)
+    int a = 5
 
-    x = sub(x a)
-    print(x)
+    if (a > 10) {
+
+    }
 }

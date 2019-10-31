@@ -57,6 +57,12 @@ class ConstantPool {
     }
 
     set(value) {
+        for (const [k, v] of this.constants) {
+            if (v === value) {
+                return k
+            }
+        }
+
         const name = `${this.labelGenerator.next()}`
         
         if (this.constants.has(name.toLowerCase())) {
@@ -68,15 +74,20 @@ class ConstantPool {
             }
         }
         this.constants.set(name.toLowerCase(), value)
+        return name
     }
 
-    constantName(constant) {
+    constantName(constant, create = true) {
         for (const [k, v] of this.constants) {
             if (v === constant) {
                 return k
             }
         }
-        return null
+        if (create) {
+            return this.set(constant)
+        } else {
+            return null
+        }
     }
 }
 

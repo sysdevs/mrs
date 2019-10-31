@@ -36,7 +36,7 @@ class Stack {
             sourceLayout.pushInstruction(...inst)
         }
 
-        sourceLayout.pushInstruction('jumpi', `${name}`)
+        sourceLayout.pushInstruction('jumpi', name)
         sourceLayout.end(4)
     }
 }

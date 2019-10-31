@@ -2,11 +2,13 @@ const CodeGenerationError = require('../codegen-error')
 
 const Constants = require('./constants')
 const Function = require('./function')
+const PrintStr = require('./print-str')
 const Stack = require('./stack')
 const Variables = require('./variables')
 
 const statements = {
     'declaration': require('./statement/declaration'),
+    'if': require('./statement/if'),
     'return': require('./statement/return')
 }
 
@@ -15,6 +17,7 @@ const expressions = {
     'function-call': require('./expression/function-call'),
     'number': require('./expression/number'),
     'operator': require('./expression/operator'),
+    'str': require('./expression/string'),
     'symbol': require('./expression/symbol')
 }
 
@@ -39,6 +42,9 @@ class MARIECodeGenerator {
         for (const func of this.functions.values()) {
             func.generate(this)
         }
+
+        const printStr = new PrintStr()
+        printStr.generate(this.prefix, this.sourceLayout, this.constantPool, this.variablePool)
 
         const stack = new Stack()
         stack.generate(this.prefix, this.sourceLayout, this.constantPool)
