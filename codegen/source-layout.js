@@ -4,6 +4,7 @@ class SourceLayout {
         this.wordSize = wordSize
         this.instructions = Array(capacity)
         this.indentCount = 0
+        this.label = ''
     }
     begin(amount = 1) {
         this.indentCount += amount
@@ -16,9 +17,20 @@ class SourceLayout {
     increment() {
         return Array(this.indentCount + 1).join(' ')
     }
+    pushLabel(name) {
+        this.label += `${name}, `
+    }
     pushInstruction(instruction, ...operands) {
-        const line = `${this.increment()}${instruction} ${operands.join(' ')}`
-        
+        if (this.label !== '') {
+            this.end(4)
+        }
+        const line = `${this.increment()}${this.label}${instruction} ${operands.join(' ')}`
+
+        if (this.label !== '') {
+            this.begin(4)
+            this.label = ''
+        }
+
         if (this.instructions.length <= this.wordOffset) {
             throw new Error(`out of memory`)
         }

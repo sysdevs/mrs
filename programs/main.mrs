@@ -1,15 +1,9 @@
-func add a b {
-    return a + b
-}
-
-func sub a b {
-    return a - b
-}
-
 func main {
-    int a = 5
+    int a = input()
 
     if (a > 10) {
-
+        prints('a is greater than 10')
+    } else {
+        prints('a is less than or equal to 10')
     }
 }

@@ -61,18 +61,18 @@ class MARIECodeGenerator {
         return this.sourceLayout.instructions.join('\n')
     }
 
-    generateNode(node) {
+    generateNode(node, ...args) {
         switch (node.type) {
             case 'statement':
                 if (Reflect.has(statements, node.kind)) {
-                    statements[node.kind](node, this)
+                    statements[node.kind](node, this, ...args)
                 } else {
                     console.warn(`unimplemented statement: ${node.kind}`)
                 }
                 break
             case 'expression':            
                 if (Reflect.has(expressions, node.kind)) {
-                    expressions[node.kind](node, this)
+                    expressions[node.kind](node, this, ...args)
                 } else {
                     console.warn(`unimplemented expression: ${node.kind}`)
                 }

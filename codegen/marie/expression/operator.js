@@ -1,4 +1,4 @@
-module.exports = (node, codeGen) => {
+module.exports = (node, codeGen, ...args) => {
     switch (node.operation) {
         case '+': {
             const tmpName = codeGen.variablePool.nextTemp()
@@ -58,23 +58,46 @@ module.exports = (node, codeGen) => {
             codeGen.sourceLayout.pushInstruction('store', varName)
         } break
         case '>': {
-            const leftName = codeGen.variablePool.nextTemp()
-            const leftVar = codeGen.variablePool.find(leftName)
+            const [parent, end, gen] = args
 
-            for (const left of node.left) {
-                codeGen.generateNode(left)
-            }
-
-            codeGen.sourceLayout.pushInstruction('store', leftVar)
+            const varName = codeGen.variablePool.nextTemp()
+            const tempVar = codeGen.variablePool.find(varName)
 
             for (const right of node.right) {
                 codeGen.generateNode(right)
             }
 
-            codeGen.sourceLayout.pushInstruction('subt', leftVar)
-            codeGen.pushStack()
+            codeGen.sourceLayout.pushInstruction('store', tempVar)
 
-            codeGen.variablePool.releaseTemp(leftName)
+            for (const left of node.left) {
+                codeGen.generateNode(left)
+            }
+
+            codeGen.sourceLayout.pushInstruction('subt', tempVar)
+            codeGen.sourceLayout.pushInstruction('skipcond', '800')
+
+            let elseLabel = null
+
+            if (parent.else) {
+                elseLabel = gen.next()
+                codeGen.sourceLayout.pushInstruction('jump', elseLabel)
+            } else {
+                codeGen.sourceLayout.pushInstruction('jump', end)
+            }
+            
+            for (const childNode of parent.body) {
+                codeGen.generateNode(childNode)
+            }
+
+            if (parent.else) {
+                codeGen.sourceLayout.pushInstruction('jump', end)
+
+                codeGen.sourceLayout.pushLabel(elseLabel)
+                for (const childNode of parent.else) {
+                    codeGen.generateNode(childNode)
+                }
+            }
+            codeGen.variablePool.releaseTemp(varName)
         } break
     }
 }
