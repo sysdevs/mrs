@@ -1,9 +1,17 @@
+func add_two x {
+    return x + 2
+}
+
 func main {
     int a = input()
+    int b = input()
 
-    if (a > 10) {
-        prints('a is greater than 10')
+    if (a = b) {
+        a = a + 2
     } else {
-        prints('a is less than or equal to 10')
+        b = b - a
     }
+
+    printi(a)
+    printi(b)
 }

@@ -2,6 +2,45 @@
     {
         "type": "statement",
         "kind": "function",
+        "name": "add_two",
+        "arguments": [
+            {
+                "type": "expression",
+                "kind": "symbol",
+                "name": "x"
+            }
+        ],
+        "body": [
+            {
+                "type": "statement",
+                "kind": "return",
+                "expression": [
+                    {
+                        "type": "expression",
+                        "kind": "operator",
+                        "operation": "+",
+                        "left": [
+                            {
+                                "type": "expression",
+                                "kind": "symbol",
+                                "name": "x"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "expression",
+                                "kind": "number",
+                                "value": 2
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "statement",
+        "kind": "function",
         "name": "main",
         "arguments": [],
         "body": [
@@ -26,12 +65,31 @@
             },
             {
                 "type": "statement",
+                "kind": "declaration",
+                "name": "b",
+                "dataType": "int"
+            },
+            {
+                "type": "expression",
+                "kind": "assignment",
+                "name": "b",
+                "value": [
+                    {
+                        "type": "expression",
+                        "kind": "function-call",
+                        "name": "input",
+                        "parameters": []
+                    }
+                ]
+            },
+            {
+                "type": "statement",
                 "kind": "if",
                 "predicate": [
                     {
                         "type": "expression",
                         "kind": "operator",
-                        "operation": ">",
+                        "operation": "=",
                         "left": [
                             {
                                 "type": "expression",
@@ -42,8 +100,8 @@
                         "right": [
                             {
                                 "type": "expression",
-                                "kind": "number",
-                                "value": 10
+                                "kind": "symbol",
+                                "name": "b"
                             }
                         ]
                     }
@@ -51,13 +109,27 @@
                 "body": [
                     {
                         "type": "expression",
-                        "kind": "function-call",
-                        "name": "prints",
-                        "parameters": [
+                        "kind": "operator",
+                        "operation": "=",
+                        "left": [
                             {
                                 "type": "expression",
-                                "kind": "str",
-                                "value": "a is greater than 10"
+                                "kind": "symbol",
+                                "name": "a"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "expression",
+                                "kind": "function-call",
+                                "name": "add_two",
+                                "parameters": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "symbol",
+                                        "name": "a"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -65,15 +137,60 @@
                 "else": [
                     {
                         "type": "expression",
-                        "kind": "function-call",
-                        "name": "prints",
-                        "parameters": [
+                        "kind": "operator",
+                        "operation": "=",
+                        "left": [
                             {
                                 "type": "expression",
-                                "kind": "str",
-                                "value": "a is less than or equal to 10"
+                                "kind": "symbol",
+                                "name": "b"
+                            }
+                        ],
+                        "right": [
+                            {
+                                "type": "expression",
+                                "kind": "operator",
+                                "operation": "-",
+                                "left": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "symbol",
+                                        "name": "b"
+                                    }
+                                ],
+                                "right": [
+                                    {
+                                        "type": "expression",
+                                        "kind": "symbol",
+                                        "name": "a"
+                                    }
+                                ]
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                "type": "expression",
+                "kind": "function-call",
+                "name": "printi",
+                "parameters": [
+                    {
+                        "type": "expression",
+                        "kind": "symbol",
+                        "name": "a"
+                    }
+                ]
+            },
+            {
+                "type": "expression",
+                "kind": "function-call",
+                "name": "printi",
+                "parameters": [
+                    {
+                        "type": "expression",
+                        "kind": "symbol",
+                        "name": "b"
                     }
                 ]
             }

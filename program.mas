@@ -1,38 +1,58 @@
 jns mrs_main
 halt 
+mrs_add_two, hex 000
+    load mrs_var1
+    store mrs_var0
+    load mrs_const0
+    add mrs_var0
+    jns mrs_stack_push
+    jumpi mrs_add_two
 mrs_main, hex 000
     input 
     jns mrs_stack_push
     jns mrs_stack_pop
     loadi mrs_stack_ptr
+    store mrs_var2
+    input 
+    jns mrs_stack_push
+    jns mrs_stack_pop
+    loadi mrs_stack_ptr
+    store mrs_var3
+mrs_0label0, load mrs_var3
     store mrs_var0
-mrs_0label0, load mrs_const0
-    store mrs_var1
-    load mrs_var0
-    subt mrs_var1
-    skipcond 800
+    load mrs_var2
+    subt mrs_var0
+    skipcond 400
     jump mrs_0label2
-    load mrs_const1_ptr
-    jns mrs_stack_push
-    jns mrs_print_str
+    load mrs_var2
+    store mrs_var4
+    load mrs_const0
+    add mrs_var4
+    store mrs_var2
     jump mrs_0label1
-mrs_0label2, load mrs_const2_ptr
-    jns mrs_stack_push
-    jns mrs_print_str
-mrs_0label1, jumpi mrs_main
+mrs_0label2, load mrs_var2
+    store mrs_var4
+    load mrs_var3
+    subt mrs_var4
+    store mrs_var3
+mrs_0label1, load mrs_var2
+    output 
+    load mrs_var3
+    output 
+    jumpi mrs_main
 mrs_print_str, hex 0000
     jns mrs_stack_pop
     loadi mrs_stack_ptr
-mrs_print_strcheck_null, store mrs_var1
-    loadi mrs_var1
+mrs_print_strcheck_null, store mrs_var4
+    loadi mrs_var4
     skipcond 400
     jump mrs_print_strprint_ch
     jumpi mrs_print_str
-mrs_print_strprint_ch, loadi mrs_var1
+mrs_print_strprint_ch, loadi mrs_var4
     output 
-    load mrs_var1
-    add mrs_const3
-    store mrs_var1
+    load mrs_var4
+    add mrs_const1
+    store mrs_var4
     jump mrs_print_strcheck_null
 mrs_stack_push, hex 0000
     storei mrs_stack_ptr
@@ -45,62 +65,12 @@ mrs_stack_pop, hex 0000
     add mrs_stack_step
     store mrs_stack_ptr
     jumpi mrs_stack_pop
-mrs_const0, dec 10
-mrs_const1_ptr, hex 0x31
-mrs_const1, dec 97
-    dec 32
-    dec 105
-    dec 115
-    dec 32
-    dec 103
-    dec 114
-    dec 101
-    dec 97
-    dec 116
-    dec 101
-    dec 114
-    dec 32
-    dec 116
-    dec 104
-    dec 97
-    dec 110
-    dec 32
-    dec 49
-    dec 48
-    dec 0
-mrs_const2_ptr, hex 0x47
-mrs_const2, dec 97
-    dec 32
-    dec 105
-    dec 115
-    dec 32
-    dec 108
-    dec 101
-    dec 115
-    dec 115
-    dec 32
-    dec 116
-    dec 104
-    dec 97
-    dec 110
-    dec 32
-    dec 111
-    dec 114
-    dec 32
-    dec 101
-    dec 113
-    dec 117
-    dec 97
-    dec 108
-    dec 32
-    dec 116
-    dec 111
-    dec 32
-    dec 49
-    dec 48
-    dec 0
-mrs_const3, dec 1
+mrs_const0, dec 2
+mrs_const1, dec 1
 mrs_stack_ptr, dec 4095
 mrs_stack_step, dec 1
 mrs_var0, dec 0
 mrs_var1, dec 0
+mrs_var2, dec 0
+mrs_var3, dec 0
+mrs_var4, dec 0

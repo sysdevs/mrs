@@ -4,10 +4,13 @@ Compiler for the mrs language -- MARIE Really Sux
 ## What is mrs?
 This project compiles the mrs language to MARIE assembly [see MARIE-js wiki for more info](https://github.com/MARIE-js/MARIE.js/wiki). 
 
-You can also find an online (in-browser) MARIE compiler, virtual machine, and various debugging tools at [https://marie.js.org/](https://marie.js.org/)
+You can also find an online (in-browser) MARIE compiler, virtual machine, and various debugging tools at [https://marie.js.org/](https://marie.js.org/) 
 
 ## Example program
-```
+An example program is in the directory `programs/main.mrs`, and its compiled assembly is located at `program.mas`. 
+ 
+Below is a contrived program. 
+```go
 func add a b {
     return a + b
 }

@@ -3,7 +3,7 @@ const keywords = require('../keywords')
 const whitespace = ch => /^[\s]$/.test(ch)
 const alpha = ch => /^[a-zA-Z0-9]$/.test(ch)
 const numeric = ch => /^[0-9]$/.test(ch)
-const alphanumeric = ch => /^[a-zA-Z0-9]$/.test(ch)
+const alphanumeric = ch => /^[a-zA-Z0-9_]$/.test(ch)
 const operator = ch => /^[\+\-\*\/<>=!]$/.test(ch)
 const misc = ch => /^[\(\){}]$/.test(ch)
 
