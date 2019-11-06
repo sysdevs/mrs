@@ -55,9 +55,6 @@ class MARIECodeGenerator {
         const vars = new Variables(this.variablePool)
         vars.generate(this.sourceLayout)
 
-        console.log(this.constantPool.constants)
-        console.log(this.variablePool.mapping)
-
         return this.sourceLayout.instructions.join('\n')
     }
 

@@ -13,12 +13,16 @@ const argv = yargs
         description: 'dumps the abstract syntax tree to ast.json',
         type: 'boolean'
     })
+    .default({
+        output: 'program.mas'
+    })
+    .demand(['input'])
     .help()
     .alias('help', 'h')
     .argv
 
 try {
-    const source = fs.readFileSync('programs/main.mrs').toString()
+    const source = fs.readFileSync(argv.input).toString()
 
     const tokenizer = new Tokenizer(source)
     tokenizer.tokenize()
@@ -34,7 +38,7 @@ try {
     const codeGenerator = new CodeGenerator(syntaxTree.ast, 'marie')
     const asmSource = codeGenerator.generate()
 
-    fs.writeFileSync('program.mas', asmSource.trim())
+    fs.writeFileSync(argv.output, asmSource.trim())
 } catch (error) {
     console.error('error while compiling program')
     console.error(error)

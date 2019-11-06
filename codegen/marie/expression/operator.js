@@ -47,7 +47,6 @@ function generateIfStatement(node, codeGen, type, ...args) {
     generateChild(parent.body, codeGen)
 
     if (parent.else) {
-        console.log('else =', elseLabel)
         codeGen.sourceLayout.pushInstruction('jump', end)
 
         codeGen.sourceLayout.pushLabel(elseLabel)
