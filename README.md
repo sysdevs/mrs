@@ -6,6 +6,15 @@ This project compiles the mrs language to MARIE assembly [see MARIE-js wiki for 
 
 You can also find an online (in-browser) MARIE compiler, virtual machine, and various debugging tools at [https://marie.js.org/](https://marie.js.org/) 
 
+## Installation and usage
+Ensure that you have NodeJS and npm installed on your system.
+```bash
+git clone https://github.com/sysdevs/mrs && cd mrs
+npm install
+node index.js --help # shows help
+node index.js --input programs/main.mrs --output main.mas
+```
+
 ## Example program
 An example program is in the directory `programs/main.mrs`, and its compiled assembly is located at `program.mas`. 
  
